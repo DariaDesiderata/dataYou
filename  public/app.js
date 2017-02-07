@@ -1,6 +1,5 @@
 var $submit = $('#submitBttn');
 var $inputSocialMedia = $('#inputSocialMedia')
-var tweetArr = [];
 var tweetObj = {
   content: '',
   contenttype: "text/plain",
@@ -14,6 +13,7 @@ var tweetObj = {
 //on change of $inputSocialMedia -> disable Sample text box and the other way around
 
 var socialMediaData = {};
+var tweetArr = [];
 
 $submit.click(function(evt) {
   evt.preventDefault();
@@ -21,48 +21,44 @@ $submit.click(function(evt) {
    var domain = 'https://galvanize-twitter-proxy.herokuapp.com/search/tweets?q=from%3A';
    var inputData = $inputSocialMedia.val();
    var url = domain + inputData;
+      $.get(url,
+        function(result) {socialMediaData.statuses = result.statuses})
+        .then(function(){
+          var profile = JSON.stringify({'contentItems': createDataObject(socialMediaData)})
+          getAnalysis(profile)
+        })
+        .catch(function(reason){alert(reason)})
 
-    $.get(url,
-      function(result) {socialMediaData.statuses = result.statuses})
-      .then(createDataObject)
-      .catch(function(){alert("error")})
   } else {
     return $inputText.val()
   }
 })
 
 function createDataObject(socialMediaData) {
-  var userName = socialMediaData.statuses[0].user['screen_name']
-
-  //if($inputSocialMedia !== userName) {alert("Invalid social media account")}
+  //if($inputSocialMedia.val() !== userName) {throw new Error ('Invalid user name')}
+  var userName = socialMediaData.statuses[0].user['screen_name'];
   var statusesArr = socialMediaData.statuses;
   statusesArr.forEach(function(status) {
     tweetObj.content = status.text,
     tweetObj.created =
     tweetObj.id = status.id
     tweetObj.userid = status.user['screen_name']
+    tweetArr.push(tweetObj)
   })
-  console.log(tweetObj);
-  tweetArr.push(status)
+  return tweetArr;
 }
 
-//next step - JSON.stringify(tweetArr)
-//use that JSON object line 43
-
-//
-
-// $(document).ready(function() {
-//   $.get('/profile.json').then(function(profile) {
-//     $.ajax({
-//       type: 'POST',
-//       url: 'https://galvanize-cors-proxy.herokuapp.com/https://watson-api-explorer.mybluemix.net/personality-insights/api/v3/profile?version=2017-02-01',
-//       contentType: 'application/json',
-//       data: JSON.stringify(profile),
-//       headers: {
-//         "Authorization": "Basic Y2RjZjZjMWEtN2Q0Yy00YzA0LWJiNmUtZTE4MmIxNDdmMzAwOkdna1dBUGNQREZhMQ=="
-//       }
-//     }).then(function(analysis) {
-//       console.log(analysis);
-//     })
-//   })
-// })
+function getAnalysis(profile) {
+    $.ajax({
+      type: 'POST',
+      url: 'https://galvanize-cors-proxy.herokuapp.com/https://watson-api-explorer.mybluemix.net/personality-insights/api/v3/profile?version=2017-02-01',
+      contentType: 'application/json',
+      data: profile,
+      headers: {
+        "Authorization": "Basic Y2RjZjZjMWEtN2Q0Yy00YzA0LWJiNmUtZTE4MmIxNDdmMzAwOkdna1dBUGNQREZhMQ=="
+      }
+    }).then(function(analysis) {
+      console.log(analysis);
+    })
+//})
+}
