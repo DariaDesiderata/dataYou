@@ -36,7 +36,7 @@ $submit.click(function(evt) {
 
 function createDataObject(socialMediaData) {
   //if($inputSocialMedia.val() !== userName) {throw new Error ('Invalid user name')}
-   userName = socialMediaData.statuses[0].user['screen_name'];
+  userName = socialMediaData.statuses[0].user['screen_name'];
   var statusesArr = socialMediaData.statuses;
   statusesArr.forEach(function(status) {
     tweetObj.content = status.text,
@@ -105,3 +105,27 @@ var bigFiveChart = new Chart($ctx, {
 })
 
 }
+
+
+//slider animation
+
+var $sliderList = $('.slider').find('.slides');
+var $slides = $sliderList.find('.slide');
+var currentSlide = 1;
+$('#first-img').fadeIn(2000);
+
+//create a function to animate the ul of slides, changing margin dynamically of each slide element over 3 seconds
+function animateSlides(){
+  $sliderList.animate({
+    'margin-left':  -100 * (currentSlide-1) + "%"}, 5000);
+}
+
+var carouselInt = "";
+var carousel = function() {
+  carouselInt = setInterval(function() {
+    currentSlide = (currentSlide === $slides.length) ? 1 : currentSlide + 1;
+    animateSlides();
+
+  }, 3000);
+};
+carousel();
