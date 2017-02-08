@@ -1,44 +1,31 @@
-#image-holder {
-  margin: 20px;
-
+body {
+  font-family: 'Righteous', cursive;
+  letter-spacing: 5px;
 }
 #nav {
   background: hsla(159, 40%, 70%, 0.61);
 }
 .logo {
-  margin: 20px;
+  margin: 30px;
   font-size: 2em;
-  font-family: 'Righteous', cursive;
   background-color: hsla(159, 40%, 70%, 0.61);
   padding: 20px;
   text-align: center;
 }
 
-.slider {
-  height: 400px;
-  width: 100%;
-  overflow: hidden;
-  margin: 0;
-  position: relative;
+.form-control, #inputFile {
+  padding: 5px;
+  margin: 10px;
 }
 
-.slider .slides {
-  display: block;
-  white-space: nowrap;
-  width: 100%;
-  height: 400px;
-  padding: 0;
+ #submitBttn {
+   background: hsla(218, 90%, 62%, 1);
+   margin: 10px;
+ }
 
-}
-
-.slider .slide {
-  display: inline-block;
-  list-style-type: none;
-  width: 100%;
-  height: 400px;
-  text-align: center;
-}
-
-#first-img {
+p {
   display: none;
+  background: hsla(159, 40%, 70%, 0.61);
+  padding: 10px;
+  width: 300px;
 }

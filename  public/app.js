@@ -1,5 +1,6 @@
 var $submit = $('#submitBttn');
-var $inputSocialMedia = $('#inputSocialMedia')
+var $inputSocialMedia = $('#inputSocialMedia');
+var $textInput = $('#inputText');
 var tweetObj = {
   content: '',
   contenttype: "text/plain",
@@ -17,25 +18,24 @@ var tweetArr = [];
 
 $submit.click(function(evt) {
   evt.preventDefault();
-  if($inputSocialMedia) {
+  if($inputSocialMedia.val()){
    var domain = 'https://galvanize-twitter-proxy.herokuapp.com/search/tweets?q=from%3A';
    var inputData = $inputSocialMedia.val();
    var url = domain + inputData;
-      $.get(url,
-        function(result) {socialMediaData.statuses = result.statuses})
-        .then(function(){
-          var profile = JSON.stringify({'contentItems': createDataObject(socialMediaData)})
+      $.get(url)
+        .then(function(result) {
+          socialMediaData.statuses = result.statuses;
+          var profile = JSON.stringify({'contentItems': createDataObject(socialMediaData)});
           getAnalysis(profile)
         })
-        .catch(function(reason){alert(reason)})
-
+        .catch(function(reason){$('p').fadeIn(1000).delay(1000).fadeOut(1000)})
   } else {
-    return $inputText.val()
+    console.log($textInput.val());
+    getTextAnalysis($textInput);
   }
 })
 
 function createDataObject(socialMediaData) {
-  //if($inputSocialMedia.val() !== userName) {throw new Error ('Invalid user name')}
   userName = socialMediaData.statuses[0].user['screen_name'];
   var statusesArr = socialMediaData.statuses;
   statusesArr.forEach(function(status) {
@@ -63,8 +63,24 @@ function getAnalysis(profile) {
       personalityData.forEach(category => analysisData.push(Math.round(category.percentile * 100)))
       createChart(analysisData);
     })
-//})
 }
+
+function getTextAnalysis(textInput) {
+  $.ajax({
+    type: 'POST',
+    url: 'https://galvanize-cors-proxy.herokuapp.com/https://watson-api-explorer.mybluemix.net/personality-insights/api/v3/profile?version=2017-02-01',
+    contentType: 'text',
+    data: textInput,
+    headers: {
+      "Authorization": "Basic Y2RjZjZjMWEtN2Q0Yy00YzA0LWJiNmUtZTE4MmIxNDdmMzAwOkdna1dBUGNQREZhMQ=="
+    }
+  }).then(function(analysis) {
+    var personalityData = analysis.personality;
+    personalityData.forEach(category => analysisData.push(Math.round(category.percentile * 100)))
+    createChart(analysisData);
+  })
+}
+
 //map analysis object returned by getAnalysis function to a chart
 var analysisData = [];
 function createChart(analysisData) {
@@ -108,24 +124,27 @@ var bigFiveChart = new Chart($ctx, {
 
 
 //slider animation
+$('.carousel').carousel();
 
-var $sliderList = $('.slider').find('.slides');
-var $slides = $sliderList.find('.slide');
-var currentSlide = 1;
-$('#first-img').fadeIn(2000);
-
-//create a function to animate the ul of slides, changing margin dynamically of each slide element over 3 seconds
-function animateSlides(){
-  $sliderList.animate({
-    'margin-left':  -100 * (currentSlide-1) + "%"}, 5000);
-}
-
-var carouselInt = "";
-var carousel = function() {
-  carouselInt = setInterval(function() {
-    currentSlide = (currentSlide === $slides.length) ? 1 : currentSlide + 1;
-    animateSlides();
-
-  }, 3000);
-};
-carousel();
+// var $sliderList = $('.slider').find('.slides');
+// var $slides = $sliderList.find('.slide');
+// var currentSlide = 1;
+// $('#first-img').fadeIn(2000);
+//
+// //create a function to animate the ul of slides, changing margin dynamically of each slide element over 3 seconds
+// function animateSlides(){
+//   $sliderList.animate({
+//     'margin-left':  -100 * (currentSlide-1) + "%"}, 5000);
+// }
+//
+// var carouselInt = "";
+// var carousel = function() {
+//   carouselInt = setInterval(function() {
+//     if(currentSlide === $slides.length) {
+//       currentSlide = 1;
+//     } else {currentSlide = currentSlide + 1}
+//     animateSlides();
+//
+//   }, 3000);
+// };
+// carousel();
