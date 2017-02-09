@@ -27,7 +27,7 @@ $submit.click(function(evt) {
   $('html, body').animate({
     scrollTop: $('#chartArea').offset().top
   }, 1000)
-
+  $('.chartText').fadeOut(500)
 
 
   if($inputSocialMedia.val()){
@@ -128,7 +128,6 @@ $fileInput.on('change', function(e) {
 //map analysis object returned by getAnalysis function to a chart
 var analysisData = [];
 function createChart(analysisData) {
-  console.log(analysisData);
   var $ctx = $('#personalityChart')
   var bigFiveChart = new Chart($ctx, {
     type: 'polarArea',

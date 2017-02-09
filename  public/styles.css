@@ -13,11 +13,11 @@ body {
 }
 .logo {
   border-radius: 20px;
-  margin: 20px;
+  margin: 10px;
   font-size: 2em;
   background-color: hsla(159, 40%, 70%, 0.40);
-  padding: 20px;
   text-align: center;
+  padding: 20px;
 }
 
 .form-control, #inputFile, .drop-down {
@@ -36,7 +36,7 @@ label {
 
  #submitBttn {
    background: hsla(159, 40%, 70%, 0.9);
-   margin: 10px;
+   padding-left: 20px;
  }
 
  .scrollToChart {
@@ -51,6 +51,10 @@ p {
   width: 300px;
 }
 
+.chartText {
+  margin-top: 15px;
+  text-align: center;
+}
 .jumbotron {
   background-size: cover;
   background-repeat: no-repeat;
@@ -81,7 +85,7 @@ p {
 }
 
 i {
-  margin-right: 10px;
+  margin-right: 20px;
   color: hsla(0, 0%, 22%, 1)
 }
 i:hover {
