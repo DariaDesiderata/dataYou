@@ -19,10 +19,14 @@ body {
   text-align: center;
 }
 
-.form-control, #inputFile {
+.form-control, #inputFile, .drop-down {
   padding: 5px;
   margin: 10px;
-  background-color: hsla(18, 89%, 96%, 0.55)
+  background-color: hsla(18, 89%, 96%, 0.55);
+}
+.drop-down {
+  height: 40px;
+  padding: 5px;
 }
 
 label {

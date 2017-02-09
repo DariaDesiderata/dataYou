@@ -53,6 +53,13 @@
             <div class="col-lg-5 col-lg-offset-4 col-md-7">
                 <h2 class="logo">ANALYZE THIS</h2>
                 <form>
+                  <div class="form-group">
+                    <select class="drop-down">
+                        <option value="">Select your data source</option>
+                        <option id="opt1" value="">My test subject is a Twitter maniac(15+ tweets in the past week)</option>
+                        <option id="opt2" value="">My test subject is an epistolary genius(600+ words)</option>
+                    </select>
+                  </div>
                     <div class="form-group">
                         <label for="socialMedia">Social media account</label>
                         <input type="text" class="form-control" id="inputSocialMedia" placeholder="Twitter handle">
@@ -86,7 +93,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.js"></script>
     <script src="./app.js"></script>
+<footer>
+  <p>The page is using Watson PI API, Twitter API, Chart.js, Bootstrap and images from PicJumbo. </p>
+</footer>
 </body>
-<footer></footer>
 
 </html>

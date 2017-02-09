@@ -1,20 +1,27 @@
 var $submit = $('#submitBttn');
 var $inputSocialMedia = $('#inputSocialMedia');
-var $textInput = $('#inputText');
-var tweetObj = {
-  content: '',
-  contenttype: "text/plain",
-  created: '',
-  id: '',
-  language: "en",
-  sourceid: "Twitter API",
-  userid: ''
-};
+var $textInput = $('#inputText').text();
+var fileText;
+
 var userName;
 var socialMediaData = {};
 var tweetArr = [];
 
 
+//enable the user to select between inputting text or Twitter handle
+$('.drop-down').on('change', function(){
+  if($('option:selected').attr('id') == 'opt1') {
+    $('#inputText').prop('disabled', true).css('background-color', 'grey');
+    $inputSocialMedia.prop('disabled', false).css('background-color', 'white')
+  } else {
+    $inputSocialMedia.prop('disabled', true).css('background-color', 'grey')
+    $('#inputText').prop('disabled', false).css('background-color', 'white')
+  }
+})
+
+//create function to execute on submit. If sample input is twitter - it sends a
+//a get request to Twitter API, and runs analysis on result, otherwise
+//runs analysis on text input
 $submit.click(function(evt) {
   evt.preventDefault();
   if($inputSocialMedia.val()){
@@ -26,13 +33,25 @@ $submit.click(function(evt) {
           console.log(result);
           socialMediaData.statuses = result.statuses;
           var profile = JSON.stringify({'contentItems': createDataObject(socialMediaData)});
-          getAnalysis(profile)
+          getAnalysis(profile);
         })
-        .catch(function(reason){$('p').fadeIn(1000).delay(1000).fadeOut(1000)})
+        .catch(function(reason){$('p').fadeIn(1000).delay(1000).fadeOut(1000)});
   } else {
     getTextAnalysis($textInput);
+    console.log($textInput);
   }
 })
+
+//function to run on result received from the Twitter API
+var tweetObj = {
+  content: '',
+  contenttype: "text/plain",
+  created: '',
+  id: '',
+  language: "en",
+  sourceid: "Twitter API",
+  userid: ''
+};
 
 function createDataObject(socialMediaData) {
   userName = socialMediaData.statuses[0].user['screen_name'];
@@ -46,8 +65,8 @@ function createDataObject(socialMediaData) {
   })
   return tweetArr;
 }
-//function for sendng a post request to Watson personality-insights API. This function gets invoked on click after the first API call
-//to Tweeter is executed and returns data.
+//function for sendng a post request to Watson personality-insights API. This function
+// gets invoked on click after the first API call to Tweeter is executed and returns data.
 function getAnalysis(profile) {
     $.ajax({
       type: 'POST',
@@ -65,6 +84,7 @@ function getAnalysis(profile) {
     })
 }
 
+//function to analyse text input
 function getTextAnalysis(textInput) {
   $.ajax({
     type: 'POST',
@@ -80,6 +100,24 @@ function getTextAnalysis(textInput) {
     createChart(analysisData);
   })
 }
+
+//function for the text uploaded by user in txt format
+var $fileInput = $('#inputFile');
+
+$fileInput.on('change', function(e) {
+  var file = $fileInput[0].files[0];
+  var textType = /text.*/;
+  if(file.type.match(textType)){
+    var reader = new FileReader();
+    reader.readAsText(file);
+    reader.onload = function(e) {
+      fileText = reader.result;
+      $textInput = fileText;
+    }
+  } else {
+    alert("file not supported")
+  }
+})
 
 //map analysis object returned by getAnalysis function to a chart
 var analysisData = [];
