@@ -24,6 +24,12 @@ $('.drop-down').on('change', function(){
 //runs analysis on text input
 $submit.click(function(evt) {
   evt.preventDefault();
+  $('html, body').animate({
+    scrollTop: $('#chartArea').offset().top
+  }, 1000)
+
+
+
   if($inputSocialMedia.val()){
    var domain = 'https://galvanize-twitter-proxy.herokuapp.com/search/tweets?q=from%3A';
    var inputData = $inputSocialMedia.val();

@@ -39,6 +39,11 @@ label {
    margin: 10px;
  }
 
+ .scrollToChart {
+   padding: 5px;
+
+ }
+
 p {
   display: none;
   background: hsla(159, 40%, 70%, 0.61);
@@ -77,4 +82,8 @@ p {
 
 i {
   margin-right: 10px;
+  color: hsla(0, 0%, 22%, 1)
+}
+i:hover {
+  color: hsla(157, 100%, 50%, 1)
 }
