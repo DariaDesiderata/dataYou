@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Data You</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" integrity="sha384-L/tgI3wSsbb3f/nW9V6Yqlaw3Gj7mpE56LWrhew/c8MIhAYWZ/FNirA64AVkB5pI" crossorigin="anonymous">
+    <link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="./reset.css">
     <link rel="stylesheet" href="./styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Righteous">
@@ -84,18 +85,28 @@
     <!-- Chart area begin -->
     <div class="container-fluid" id="chartArea">
         <div class="row">
-            <div class="col-lg-7 col-lg-offset-3 col-md -12">
+            <div class="col-lg-7 col-lg-offset-3 col-md-12">
                 <canvas id='personalityChart' width="600" height="500"></canvas>
             </div>
         </div>
     </div>
     <!-- Chart area end -->
+    <!-- Footer begins -->
+    <div class="container-fluid" id="footer">
+        <div class="col-lg-10 col-md-7">
+          <h5>Analyze it! uses Watson PI API, Twitter API, FileReader, Picabay for images.</h5>
+        </div>
+        <div class="col-lg-2 col-md-5">
+          <a href="https://github.com/DariaDesiderata"><i class="fa fa-github fa-2x"></i></a>
+          <a href=""><i class="fa fa-paint-brush fa-2x" aria-hidden="true"></i></a>
+          <a href="https://www.linkedin.com/in/daria-calwell/"><i class="fa fa-hand-peace-o fa-2x" aria-hidden="true"></i></a>
+        </div>
+    </div>
+    <!-- Footer ends  -->
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.js"></script>
     <script src="./app.js"></script>
-<footer>
-  <p>The page is using Watson PI API, Twitter API, Chart.js, Bootstrap and images from PicJumbo. </p>
-</footer>
 </body>
 
 </html>

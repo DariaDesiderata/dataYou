@@ -1,6 +1,7 @@
 body {
   font-family: 'Righteous', cursive;
   letter-spacing: 5px;
+  position: relative;
 
 }
 #nav {
@@ -62,6 +63,18 @@ p {
   height: 100vh;
 }
 
-#personalityChart {
+#footer {
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  padding-top: 20px;
+  background:
+    linear-gradient(
+      hsla(159, 40%, 70%, 0.40),
+      hsla(0, 0%, 0%, 0.45)
+    )
+}
 
+i {
+  margin-right: 10px;
 }
