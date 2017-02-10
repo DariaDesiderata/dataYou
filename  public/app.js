@@ -1,6 +1,6 @@
 var $submit = $('#submitBttn');
 var $inputSocialMedia = $('#inputSocialMedia');
-var $textInput = $('#inputText').text();
+var $textInput = $('#inputText');
 var fileText;
 
 var userName;
@@ -27,7 +27,7 @@ $submit.click(function(evt) {
   $('html, body').animate({
     scrollTop: $('#chartArea').offset().top
   }, 1000)
-  $('.chartText').fadeOut(500)
+  $('.chartText').fadeOut(700)
 
 
   if($inputSocialMedia.val()){
@@ -36,7 +36,6 @@ $submit.click(function(evt) {
    var url = domain + inputData;
       $.get(url)
         .then(function(result) {
-          console.log(result);
           socialMediaData.statuses = result.statuses;
           var profile = JSON.stringify({'contentItems': createDataObject(socialMediaData)});
           getAnalysis(profile);
@@ -44,7 +43,7 @@ $submit.click(function(evt) {
         .catch(function(reason){$('p').fadeIn(1000).delay(1000).fadeOut(1000)});
   } else {
     getTextAnalysis($textInput);
-    console.log($textInput);
+
   }
 })
 
@@ -86,7 +85,7 @@ function getAnalysis(profile) {
       var personalityData = analysis.personality;
       personalityData.forEach(category => analysisData.push(Math.round(category.percentile * 100)))
       createChart(analysisData);
-      socialMediaData = {};
+
     })
 }
 
@@ -128,7 +127,7 @@ $fileInput.on('change', function(e) {
 //map analysis object returned by getAnalysis function to a chart
 var analysisData = [];
 function createChart(analysisData) {
-  var $ctx = $('#personalityChart')
+  var $ctx = $('#personalityChart');
   var bigFiveChart = new Chart($ctx, {
     type: 'polarArea',
     data: {
