@@ -7,16 +7,16 @@
     <title>Daria's Super Awesome first project</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" integrity="sha384-L/tgI3wSsbb3f/nW9V6Yqlaw3Gj7mpE56LWrhew/c8MIhAYWZ/FNirA64AVkB5pI" crossorigin="anonymous">
     <link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./reset.css">
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Righteous">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <!--Navbar begin  -->
   <div class="jumbotron">
-    <nav class="navbar navbar-default" id="nav">
+    <!--Navbar begin  -->
+    <!-- <nav class="navbar navbar-default" id="nav">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -35,20 +35,20 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav> -->
 
     <!--Navbar end  -->
     <!-- Input area begin -->
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-5 col-lg-offset-4 col-md-7">
+            <div class="col-lg-5 col-lg-offset-4 col-md-6">
                 <h2 class="logo">ANALYZE THIS</h2>
                 <form>
                   <div class="form-group">
                     <select class="drop-down form-control">
                         <option value="">Select your data source</option>
-                        <option id="opt1" value="">My test subject is a Twitter maniac(15+ tweets in the past week)</option>
-                        <option id="opt2" value="">My test subject is an epistolary genius(600+ words)</option>
+                        <option id="opt1" value="">Twitter</option>
+                        <option id="opt2" value="">Text/File upload</option>
                     </select>
                   </div>
                     <div class="form-group">
@@ -57,42 +57,38 @@
                     </div>
                     <div class="form-group">
                         <label for="inputText">Sample text</label>
-                        <textarea class="form-control" id="inputText" placeholder="Some sample text here..." rows="10"></textarea>
+                        <textarea class="form-control" id="inputText" placeholder="Some sample text here..." rows="5"></textarea>
                     </div>
                     <div class="form-group">
                         <input type="file" id="inputFile">
                     </div>
                     <button type="submit" class="btn btn-default" id="submitBttn"><i class="fa fa-magic fa-2x" aria-hidden="true"></i></button>
-                    <!-- <a href="#chartArea"></a> -->
+                    <a href="#chartArea"></a>
                 </form>
 
             </div>
         </div>
     </div>
-    <!-- Input area end -->
+   <!-- Input area end -->
 
   </div>
     <!-- Chart area begin -->
     <div class="container-fluid" id="chartArea">
       <h4 class="chartText">This is where the magic happens</h4>
-        <p>Not enough data to provide accurate results</p>
+        <p id="error">Not enough data to provide accurate results</p>
         <div class="row">
-            <div class="col-lg-7 col-lg-offset-3 col-md-offset-1 col-md-10">
-                <canvas id='personalityChart' width="800" height="500"></canvas>
+            <div class="col-lg-6 col-lg-offset-3 col-md-offset-3 col-md-8 col-sm-offset-1 col-sm-10">
+                <canvas id='canvas' class='img-responsive' width='800' height='600'></canvas>
             </div>
         </div>
     </div>
     <!-- Chart area end -->
     <!-- Footer begins -->
-    <div class="container-fluid" id="footer">
-        <div class="col-lg-10 col-md-7">
-          <h5>Analyze it! uses Watson PI API, Twitter API, FileReader, Picabay for images.</h5>
-        </div>
-        <div class="col-lg-2 col-md-5">
+    <div class="container-fluid col-lg-10 col-md-5" id="footer">
           <a href="https://github.com/DariaDesiderata"><i class="fa fa-github fa-2x"></i></a>
           <a href=""><i class="fa fa-paint-brush fa-2x" aria-hidden="true"></i></a>
           <a href="https://www.linkedin.com/in/daria-calwell/"><i class="fa fa-hand-peace-o fa-2x" aria-hidden="true"></i></a>
-        </div>
+          <p class="footerText">Analyze it! uses Watson PI API, Twitter API, FileReader, Picabay for images.</p>
     </div>
     <!-- Footer ends  -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

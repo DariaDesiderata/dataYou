@@ -1,0 +1,107 @@
+/*@media only screen and (min-width: 768px)
+
+{
+
+}
+
+}*/
+
+form {
+  background: hsla(159, 30%, 70%, 0.40);
+  padding: 20px;
+  margin: 20px;
+}
+
+body {
+  font-family: 'Righteous', cursive;
+  letter-spacing: 5px;
+  position: relative;
+
+}
+
+#inputSocialMedia, #inputText {
+  text-decoration: none;
+}
+.logo {
+  border-radius: 20px;
+  margin: 20px;
+  font-size: 2em;
+  background-color: hsla(159, 40%, 70%, 0.40);
+  text-align: center;
+  padding: 20px;
+}
+
+.form-control, #inputFile, .drop-down {
+  padding: 5px;
+  border: none;
+}
+
+.drop-down {
+  height: 40px;
+  padding: 5px;
+}
+
+label {
+  color: hsla(169, 80%, 70%, 1);
+  margin-bottom: 5px
+}
+
+ #submitBttn {
+   background: hsla(159, 40%, 70%, 0.9);
+   padding-left: 30px;
+ }
+
+#error {
+  display: none;
+  background: hsla(159, 40%, 70%, 0.61);
+  padding: 20px;
+}
+
+.chartText, p {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.jumbotron {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("../assets/jumbopic.jpg");
+  padding-top: 15px;
+  margin-bottom: 0px;
+  height: 100vh;
+}
+
+#chartArea {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("../assets/chartImage50.png");
+  height: 100vh;
+}
+#canvas{
+  width: 100%;
+  height: auto;
+}
+#footer {
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  padding: 20px;
+  background:
+    linear-gradient(
+      hsla(159, 40%, 70%, 0.40),
+      hsla(0, 0%, 0%, 0.45)
+    )
+}
+
+.footerText {
+  text-align: right;
+  font-size: 10px;
+}
+
+i {
+  margin-right: 20px;
+  color: hsla(0, 0%, 22%, 1)
+}
+i:hover {
+  color: hsla(157, 100%, 50%, 1)
+}
