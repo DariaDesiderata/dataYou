@@ -126,8 +126,10 @@ $fileInput.on('change', function(e) {
 
 //map analysis object returned by getAnalysis function to a chart
 var analysisData = [];
+
 function createChart(analysisData) {
   var $ctx = $('#canvas');
+
   var bigFiveChart = new Chart($ctx, {
     type: 'polarArea',
     data: {
@@ -162,5 +164,4 @@ function createChart(analysisData) {
       }]
     }
 })
-
 }
